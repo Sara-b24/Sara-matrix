@@ -26,7 +26,7 @@ st.markdown(
             filter: drop-shadow(0px 0px 5px rgba(255, 215, 0, 0.7)) 
                     drop-shadow(0px 0px 10px rgba(0, 191, 255, 0.5));
             
-            font-family: 'Montserrat', sans-serif !important;
+            font-family: 'Poppins Bold', sans-serif !important;
             font-weight: 800 !important;
             text-align: center !important;
             text-transform: uppercase !important;
@@ -53,27 +53,26 @@ st.markdown(
             font-family: 'Arial', sans-serif;
         }
 
-        /* 5. Estilo para el botón "Generar Curso" */
-        /* Fondo Dorado y Texto Azul Metálico, como el texto de la foto */
+                /* 5. Estilo para el botón "Generar Curso" - Blanco Sutil */
         .stButton>button {
-            background-color: #FFD700 !important; /* Oro */
-            color: #1E1F29 !important; /* Azul muy oscuro para el texto */
-            border-radius: 20px;
-            border: 2px solid #D4AF37; /* Borde oro viejo */
-            font-weight: bold;
-            font-size: 1.1em;
-            text-transform: uppercase;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
-            transition: all 0.3s ease;
+            background-color: #F8F9FA !important; /* Un blanco muy suave (casi gris perla) */
+            color: #002366 !important; /* Azul profundo para que las letras resalten sobre el fondo claro */
+            border-radius: 20px !important;
+            border: 1px solid #D4AF37 !important; /* Un borde dorado muy fino y elegante */
+            font-weight: bold !important;
+            font-size: 1.1em !important;
+            text-transform: uppercase !important;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2) !important;
+            transition: all 0.3s ease !important;
         }
         
         /* Efecto al pasar el mouse por el botón */
         .stButton>button:hover {
-            background-color: #D4AF37 !important; /* Se vuelve un oro más viejo */
-            border-color: #FFD700;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 8px rgba(255,215,0,0.4);
+            background-color: #E2E6EA !important; /* Un gris muy clarito al pasar el mouse */
+            border-color: #FFD700 !important;
+            color: #002366 !important;
         }
+
 
     </style>
     """,
