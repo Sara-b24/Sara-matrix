@@ -6,26 +6,35 @@ st.set_page_config(page_title="Sara Matrix", page_icon="⚡")
 st.markdown(
     """
     <style>
-        /* 1. Fondo Azul Profundo (como el de la foto) */
-        .main {
+                /* 1. Fondo Azul Real Profundo y Brillante (forzado) */
+        .stApp {
+            background-color: #001f5b !important; /* Un azul real más vibrante para el fondo */
+        }
+
             background-color: #002366; /* Un azul real profundo */
             color: white; /* Texto general en blanco para que resalte */
         }
 
-        /* 2. Estilo para el título principal "BIENVENIDOS A SARA MATRIX" */
-        /* Intentamos imitar el degradado Dorado y Azul Metálico de la foto */
+                /* 2. Título Principal Intenso y Metálico */
         h1 {
-            background: linear-gradient(135deg, #FFD700 0%, #D4AF37 30%, #4682B4 70%, #1E90FF 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            font-family: 'Montserrat', sans-serif; /* Una fuente elegante y moderna */
-            font-weight: 800;
-            text-align: center;
-            text-transform: uppercase;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5); /* Sombra para dar efecto 3D */
+            /* Colores de degradado más saturados e intensos */
+            background: linear-gradient(90deg, #FFD700 0%, #FFFACD 25%, #4682B4 70%, #00BFFF 100%) !important;
+            -webkit-background-clip: text !important;
+            -webkit-text-fill-color: transparent !important;
+            
+            /* Sombra/Resplandor para efecto metálico e iluminación */
+            filter: drop-shadow(0px 0px 5px rgba(255, 215, 0, 0.7)) 
+                    drop-shadow(0px 0px 10px rgba(0, 191, 255, 0.5));
+            
+            font-family: 'Montserrat', sans-serif !important;
+            font-weight: 800 !important;
+            text-align: center !important;
+            text-transform: uppercase !important;
             font-size: 3em !important;
-            padding-bottom: 20px;
+            padding-bottom: 10px !important;
+            margin-bottom: 0px !important;
         }
+
 
         /* 3. Estilo para el subtítulo "ZONA DE HACKEO" y el emoji ⚡ */
         /* Usamos el Dorado Brillante de la foto */
