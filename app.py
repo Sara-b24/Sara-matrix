@@ -87,21 +87,20 @@ tema = st.text_area("¿Qué contenido quieres hackear hoy?")
 archivo = st.file_uploader("O sube tu libro/apuntes aquí:")
 
 if st.button("Generar Curso de Alto Rendimiento"):
-    if tema or archivo:
+        if tema or archivo:
         st.write("---")
         st.subheader("📊 Estructura de tu Curso")
-        # Botones para los niveles
-with st.expander("Básico: Fundamentos y conceptos clave."):
-    st.write("Aquí irá el contenido básico.")
-
-with st.expander("Intermedio: Aplicaciones prácticas y casos."):
-    st.write("Aquí irá el contenido intermedio.")
-
-with st.expander("Avanzado: Análisis crítico y lógica aplicada."):
-    st.write("Aquí irá el contenido avanzado.")
-
-    st.write("---")
-    st.subheader("Tu Quiz de Nivel")
-    st.write("Estamos listos para el reto. Próximamente: Quiz de selección y casos prácticos con calificación 0-20.")
-else:
-    st.warning("Por favor, introduce un tema o sube un archivo.")
+        # Aquí van tus expansores (todo esto debe llevar un espacio a la izquierda)
+        with st.expander("Básico: Fundamentos y conceptos clave."):
+            st.write("Aquí irá el contenido básico.")
+        with st.expander("Intermedio: Aplicaciones prácticas y casos."):
+            st.write("Aquí irá el contenido intermedio.")
+        with st.expander("Avanzado: Análisis crítico y lógica aplicada."):
+            st.write("Aquí irá el contenido avanzado.")
+        
+        st.write("---")
+        st.subheader("📝 Tu Quiz de Nivel")
+        st.write("Estamos listos para el reto. Próximamente: Quiz de selección y casos prácticos con calificación 0-20.")
+    # El else debe estar alineado a la misma altura que el 'if' de arriba (sin espacios)
+    else:
+        st.warning("Por favor, introduce un tema o sube un archivo.")
