@@ -102,7 +102,6 @@ with st.expander("Avanzado: Análisis crítico y lógica aplicada."):
 
 st.write("---")
 st.subheader("Tu Quiz de Nivel")
-
-        st.write("Estamos listos para el reto. Próximamente: Quiz de selección y casos prácticos con calificación 0-20.")
-    else:
-        st.warning("Por favor, introduce un tema o sube un archivo para empezar.")
+    st.write("Estamos listos para el reto. Próximamente: Quiz de selección y casos prácticos con calificación 0-20.")
+else:
+     st.warning("Por favor, introduce un tema o sube un archivo para empezar.")
