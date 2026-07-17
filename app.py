@@ -90,10 +90,16 @@ if st.button("Generar Curso de Alto Rendimiento"):
     if tema or archivo:
         st.write("---")
         st.subheader("📊 Estructura de tu Curso")
-        st.info("Básico: Fundamentos y conceptos clave.")
-        st.info("Intermedio: Aplicaciones prácticas y casos.")
-        st.info("Avanzado: Análisis crítico y lógica aplicada.")
-        
+        # Botones para los niveles
+if st.button("Básico: Fundamentos y conceptos clave."):
+    st.write("Aquí iría tu contenido básico...")
+
+if st.button("Intermedio: Aplicaciones prácticas y casos."):
+    st.write("Aquí iría tu contenido intermedio...")
+
+if st.button("Avanzado: Análisis crítico y lógica aplicada."):
+    st.write("Aquí iría tu contenido avanzado...")
+
         st.write("---")
         st.subheader("📝 Tu Quiz de Nivel")
         st.write("Estamos listos para el reto. Próximamente: Quiz de selección y casos prácticos con calificación 0-20.")
