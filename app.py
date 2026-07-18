@@ -25,7 +25,7 @@ st.markdown("""
 if 'curso' not in st.session_state: st.session_state.curso = None
 
 st.title("SARA MATRIX")
-st.subheader("Tu centro de mando académico")
+st.subheader("Zona de Hackeo")
 
 tema = st.text_area("Ingresa el tema a investigar:")
 archivo = st.file_uploader("Sube tus apuntes (PDF):", type=['pdf'])
