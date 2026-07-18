@@ -4,54 +4,59 @@ import PyPDF2
 import os
 
 # Configuración inicial
-st.set_page_config(page_title="Sara Matrix", layout="centered")
+st.set_page_config(page_title="Sara Matrix", layout="wide")
 
-# Configuración de la API usando la clave de tus Secrets
-# Aquí estamos usando la forma que debería aceptar tu clave actual
+# Configuración de la API
 api_key = st.secrets["GEMINI_API_KEY"]
-os.environ["GOOGLE_API_KEY"] = api_key
 genai.configure(api_key=api_key)
+model = genai.GenerativeModel('gemini-1.5-flash')
 
-model = genai.GenerativeModel('gemini-pro')
-
-# Diseño CSS
+# Estilo visual (Black & Gold)
 st.markdown("""
     <style>
-    .stApp { background-color: #002366 !important; }
-    h1, h2 { color: #FFD700 !important; text-align: center; }
-    .stMarkdown, p { color: #FFFFFF !important; }
-    .stButton>button { background-color: #FFD700 !important; color: #002366 !important; font-weight: bold; border-radius: 10px; }
+    .stApp { background-color: #000000; }
+    h1, h2, h3 { color: #FFD700; text-align: center; }
+    .stMarkdown, p, div { color: #FFFFFF; }
+    .stButton>button { background-color: #FFD700; color: #000000; font-weight: bold; border-radius: 10px; width: 100%; }
     </style>
 """, unsafe_allow_html=True)
 
-# Lógica de navegación
-if 'step' not in st.session_state: st.session_state.step = 'home'
+# Lógica de estados
+if 'curso' not in st.session_state: st.session_state.curso = None
 
-if st.session_state.step == 'home':
-    st.title("BIENVENIDOS A SARA MATRIX")
-    tema = st.text_area("¿Qué contenido quieres hackear hoy?")
-    archivo = st.file_uploader("Sube tus apuntes (PDF):", type=['pdf'])
-    
-    if st.button("Generar Curso"):
-        if tema or archivo:
-            texto_archivo = ""
-            if archivo:
-                reader = PyPDF2.PdfReader(archivo)
-                for page in reader.pages: texto_archivo += page.extract_text()
-            
-            prompt = f"Analiza: {tema} {texto_archivo}. Crea un curso detallado con 3 niveles (Básico, Intermedio, Avanzado) y 3 clases por nivel. Incluye bibliografía, ejercicios y preguntas."
-            try:
-                st.session_state.curso = model.generate_content(prompt).text
-                st.session_state.step = 'menu'
-                st.rerun()
-            except Exception as e:
-                st.error(f"Error al conectar con la IA: {e}")
+st.title("SARA MATRIX")
+st.subheader("Tu centro de mando académico")
 
-elif st.session_state.step == 'menu':
-    st.title("Selecciona tu nivel")
-    if st.button("Básico"): st.session_state.step = 'contenido'; st.rerun()
-    if st.button("Volver al Inicio"): st.session_state.step = 'home'; st.rerun()
+tema = st.text_area("Ingresa el tema a investigar:")
+archivo = st.file_uploader("Sube tus apuntes (PDF):", type=['pdf'])
 
-elif st.session_state.step == 'contenido':
+if st.button("GENERAR ESTRUCTURA TOTAL"):
+    if tema or archivo:
+        texto_pdf = ""
+        if archivo:
+            reader = PyPDF2.PdfReader(archivo)
+            for page in reader.pages: texto_pdf += page.extract_text()
+        
+        prompt = f"""
+        Actúa como una experta académica. Basado en este tema: '{tema}' y este texto: '{texto_pdf[:5000]}', 
+        crea una estructura de curso completa con:
+        1. Tres niveles: Básico, Intermedio, Avanzado.
+        2. Tres clases por nivel con objetivos claros.
+        3. Para cada clase: ejercicios prácticos y preguntas de repaso.
+        4. Sugerencias de videos de YouTube, mapas mentales y esquemas.
+        5. Formato de estilo 'Pinterest' (usando emojis y viñetas visuales).
+        """
+        
+        try:
+            with st.spinner("Sincronizando con el Matrix..."):
+                response = model.generate_content(prompt)
+                st.session_state.curso = response.text
+        except Exception as e:
+            st.error(f"Error técnico: {e}")
+
+if st.session_state.curso:
+    st.markdown("---")
     st.markdown(st.session_state.curso)
-    if st.button("Volver al Menú"): st.session_state.step = 'menu'; st.rerun()
+    if st.button("Limpiar pantalla"):
+        st.session_state.curso = None
+        st.rerun()
